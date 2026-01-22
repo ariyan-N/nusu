@@ -1,13 +1,51 @@
-<audio id="bgAudio">
-  <source src="audio.mp3" type="audio/mpeg">
-  Your browser does not support audio.
-</audio>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: white;
+      color: #c33764;
+    }
+  </style>
+</head>
+<body>
 
-<button onclick="playAudio()">🎁 Tap for Surprise</button>
+  <div>
+    <h1>🎉 Hello GitHub Pages!</h1>
+    <p>If you see this, GitHub Pages is working ✅</p>
 
-<script>
-function playAudio() {
-  const audio = document.getElementById("bgAudio");
-  audio.play();
-}
-</script>
+    <audio id="testAudio">
+      <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <button onclick="playAudio()">Play Audio 🔊</button>
+  </div>
+
+  <script>
+    function playAudio() {
+      document.getElementById("testAudio").play();
+    }
+  </script>
+
+</body>
+</html>
