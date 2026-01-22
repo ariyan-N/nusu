@@ -110,7 +110,6 @@ input{
   <div class="card hidden" id="content">
     <h1>🎉 Surprise!</h1>
     <p>This moment is only for you 💖</p>
-    <button onclick="play()">▶ Play Audio</button>
   </div>
 
 </div>
@@ -122,13 +121,13 @@ function unlock(){
   if(document.getElementById("pass").value==="123"){
     document.getElementById("lock").classList.add("hidden");
     document.getElementById("content").classList.remove("hidden");
+    
+    // play audio automatically
+    var audio = document.getElementById("audio");
+    audio.play().catch(()=>console.log("User interaction required for audio"));
   }else{
     document.getElementById("err").style.display="block";
   }
-}
-
-function play(){
-  document.getElementById("audio").play();
 }
 </script>
 
