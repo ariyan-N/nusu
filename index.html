@@ -1,51 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Test Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #1d2671, #c33764);
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      font-size: 16px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      background: white;
-      color: #c33764;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Unlock</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    color:white;
+}
+
+/* Glass Card */
+.card{
+    width:90%;
+    max-width:360px;
+    padding:35px 25px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(0,0,0,0.4);
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+p{
+    font-size:14px;
+    opacity:.85;
+    margin-bottom:25px;
+}
+
+/* Input */
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    text-align:center;
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(255,80,150,0.6);
+}
+
+/* Hidden Content */
+#content{
+    display:none;
+    animation:fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:scale(0.9)}
+    to{opacity:1;transform:scale(1)}
+}
+
+/* Glow Heart */
+.heart{
+    font-size:50px;
+    animation:pulse 1.5s infinite;
+    margin-bottom:15px;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.2)}
+    100%{transform:scale(1)}
+}
+</style>
 </head>
+
 <body>
 
-  <div>
-    <h1>🎉 Hello GitHub Pages!</h1>
-    <p>If you see this, GitHub Pages is working ✅</p>
+<div class="card" id="lockScreen">
+    <h1>🔒 Locked Surprise</h1>
+    <p>Enter the secret pass to unlock</p>
+    <input type="password" id="pass" placeholder="Enter pass">
+    <button onclick="unlock()">Unlock 🎁</button>
+</div>
 
-    <audio id="testAudio">
-      <source src="audio.mp3" type="audio/mpeg">
-    </audio>
+<div class="card" id="content">
+    <div class="heart">❤️</div>
+    <h1>Happy Birthday 🎂</h1>
+    <p>This moment is only for you ✨</p>
+</div>
 
-    <button onclick="playAudio()">Play Audio 🔊</button>
-  </div>
+<audio id="audio" src="audio.mp3"></audio>
 
-  <script>
-    function playAudio() {
-      document.getElementById("testAudio").play();
+<script>
+function unlock(){
+    const pass = document.getElementById("pass").value;
+    if(pass === "123"){
+        document.getElementById("lockScreen").style.display="none";
+        document.getElementById("content").style.display="block";
+
+        const audio = document.getElementById("audio");
+        audio.play();
+    }else{
+        alert("❌ Wrong Pass");
     }
-  </script>
+}
+</script>
 
 </body>
 </html>
