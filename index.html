@@ -152,45 +152,4 @@ function playAudio(){
 </script>
 
 </body>
-</html@keyframes pulse{
-    0%{transform:scale(1)}
-    50%{transform:scale(1.2)}
-    100%{transform:scale(1)}
-}
-</style>
-</head>
-
-<body>
-
-<div class="card" id="lockScreen">
-    <h1>🔒 Locked Surprise</h1>
-    <p>Enter the secret pass to unlock</p>
-    <input type="password" id="pass" placeholder="Enter pass">
-    <button onclick="unlock()">Unlock 🎁</button>
-</div>
-
-<div class="card" id="content">
-    <div class="heart">❤️</div>
-    <h1>Happy Birthday 🎂</h1>
-    <p>This moment is only for you ✨</p>
-</div>
-
-<audio id="audio" src="audio.mp3"></audio>
-
-<script>
-function unlock(){
-    const pass = document.getElementById("pass").value;
-    if(pass === "123"){
-        document.getElementById("lockScreen").style.display="none";
-        document.getElementById("content").style.display="block";
-
-        const audio = document.getElementById("audio");
-        audio.play();
-    }else{
-        alert("❌ Wrong Pass");
-    }
-}
-</script>
-
-</body>
 </html>
