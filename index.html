@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Special Surprise 🎁</title>
+<title>Secret Surprise 🎁</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,97 +10,76 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
 body{
   height:100vh;
-  overflow:hidden;
   background:black;
+  overflow:hidden;
   color:white;
 }
 
-/* Background video */
-video.bg{
+/* VIDEO BACKGROUND */
+video{
   position:fixed;
-  top:0;
-  left:0;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  opacity:0.15;
+  opacity:0.18;
   z-index:-1;
 }
 
-/* Center box */
-.box{
+/* CENTER */
+.center{
   height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
+/* CARD */
 .card{
-  background:rgba(0,0,0,0.55);
-  backdrop-filter: blur(12px);
-  padding:35px;
-  border-radius:20px;
+  background:rgba(0,0,0,.6);
+  backdrop-filter: blur(14px);
+  border-radius:22px;
+  padding:32px;
   width:90%;
   max-width:360px;
   text-align:center;
-  animation: fadeIn 1.2s ease;
+  animation:fade .8s ease;
 }
 
-h1{
-  margin-bottom:10px;
-}
-
-p{
-  opacity:0.8;
-  font-size:14px;
-  margin-bottom:20px;
+/* BUTTON */
+button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  background:linear-gradient(135deg,#ff4ecd,#7f5cff);
+  color:white;
+  margin-top:12px;
+  box-shadow:0 0 20px rgba(255,78,205,.6);
 }
 
 input{
   width:100%;
   padding:12px;
+  border-radius:14px;
   border:none;
-  border-radius:12px;
   text-align:center;
+  margin-top:12px;
   font-size:16px;
-  margin-bottom:15px;
 }
 
-button{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:25px;
-  font-size:16px;
-  cursor:pointer;
-  background:linear-gradient(135deg,#ff4ecd,#7f5cff);
-  color:white;
-  box-shadow:0 0 20px rgba(255,78,205,.6);
-  transition:.3s;
-}
-
-button:hover{
-  transform:scale(1.05);
-}
-
-#error{
-  color:#ff8080;
-  margin-top:10px;
+/* HIDE */
+.hidden{
   display:none;
 }
 
-/* Hidden content */
-#content{
-  display:none;
-  animation: fadeIn 1.5s ease;
-}
-
-@keyframes fadeIn{
+@keyframes fade{
   from{opacity:0; transform:scale(.95);}
   to{opacity:1; transform:scale(1);}
 }
@@ -109,26 +88,29 @@ button:hover{
 
 <body>
 
-<video class="bg" src="video.mp4" autoplay loop muted playsinline></video>
+<!-- BACKGROUND VIDEO -->
+<video autoplay muted loop playsinline>
+  <source src="video.mp4" type="video/mp4">
+</video>
 
-<div class="box">
+<div class="center">
 
-  <!-- LOCK SCREEN -->
+  <!-- LOCK -->
   <div class="card" id="lock">
     <h1>🔐 Locked</h1>
     <p>Enter the secret code</p>
 
-    <input type="password" id="pass" placeholder="Enter passcode">
+    <input id="pass" type="password" placeholder="•••">
     <button onclick="unlock()">Unlock 🎁</button>
 
-    <div id="error">❌ Wrong password</div>
+    <p id="err" style="color:#ff7b7b;display:none;margin-top:8px;">Wrong pass</p>
   </div>
 
-  <!-- UNLOCKED CONTENT -->
-  <div class="card" id="content">
+  <!-- CONTENT -->
+  <div class="card hidden" id="content">
     <h1>🎉 Surprise!</h1>
     <p>This moment is only for you 💖</p>
-    <button onclick="playAudio()">▶ Play Audio</button>
+    <button onclick="play()">▶ Play Audio</button>
   </div>
 
 </div>
@@ -137,16 +119,15 @@ button:hover{
 
 <script>
 function unlock(){
-  const pass = document.getElementById("pass").value;
-  if(pass === "123"){
-    document.getElementById("lock").style.display="none";
-    document.getElementById("content").style.display="block";
+  if(document.getElementById("pass").value==="123"){
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
   }else{
-    document.getElementById("error").style.display="block";
+    document.getElementById("err").style.display="block";
   }
 }
 
-function playAudio(){
+function play(){
   document.getElementById("audio").play();
 }
 </script>
